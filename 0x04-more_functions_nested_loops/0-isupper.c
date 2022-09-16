@@ -7,7 +7,7 @@
  */
 int_isupper(int c)
 {
-	while (c >= 'a' || c <= 'z')
+	if (c >= 'a' || c <= 'z')
 	{
 		Return(0);
 	}
