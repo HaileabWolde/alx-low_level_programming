@@ -6,20 +6,30 @@
  * @needle: pointer needle
  *
  * Description: it locates s2 in s1
- * Return: if true haystack if false zero
+ * Return: if true haystack if false
  */
 
 char *_strstr(char *haystack, char *needle)
 {
-	int i, j;
+	/**
+	 * we initialize a helping variable
+	 * to assist in returning one of
+	 * our parameters pointers haystack
+	*/
+	char *h, *n;
 
-	for (i = 0; needle[i] != '\0'; ++i)
+	while (*haystack != '\0')
 	{
-		for (j = 0; haystack[j] != '\0'; ++j)
+		h = haystack;
+		n = needle;
+		while (*n != '\0' && *haystack == *n)
 		{
-			if (needle[i] == haystack[j])
-				return (haystack + j);
+			haystack++;
+			n++;
 		}
+		if (!*n)
+			return (h);
+		haystack++;
 	}
-	return (0);
+	return ('\0');
 }
