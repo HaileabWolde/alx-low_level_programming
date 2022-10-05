@@ -26,10 +26,12 @@ char *create_array(unsigned int size, char c)
 
 	else
 	{
+		if (n == null)
+			return (NULL);
+
 		for (i = 0; i < size; ++i)
 			n[i] = c;
 
 		return (n);
 	}
-		return (NULL);
 }
