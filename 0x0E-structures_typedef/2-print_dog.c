@@ -10,17 +10,14 @@
 
 void print_dog(struct dog *d)
 {
-	if (d == NULL)
+	if (d == NULL) /* validate if d initiated correctly */
 		return;
-	else
-	{
 
-	if (d->name == NULL)
-		printf("Name: (nill)\n");
+	(d->name == NULL) ? printf("Name: (nil)\n")
+		: printf("Name: %s\n", d->name);
 
-	if (d->owner == NULL)
-		printf("(nill)\n");
+	printf("Age: %f\n", d->age);
 
-	printf("Name: %s\nAge: %f\nOwner: %s", d->name, d->age, d->owner);
-	}
+	(d->owner == NULL) ? printf("Owner: (nil)\n")
+		: printf("Owner: %s\n", d->owner);
 }
