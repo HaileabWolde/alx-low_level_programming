@@ -1,6 +1,6 @@
 #include "dog.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
  * new_dog - new dog
  * @name: name
@@ -8,48 +8,76 @@
  * @owner: owner
  * Return: NULL if it falls, if true pointer
  */
+int _strlen(const char *str)
+{
+	int length = 0;
+
+	while (*str++)
+		length++;
+	return (length);
+}
+
+/**
+ * _strcopy - a function that returns @dest with a copy of a string from @src
+ *
+ * @src: string to copy
+ * @dest: copy string to here
+ *
+ * Return: @dest
+*/
+
+char *_strcopy(char *dest, char *src)
+{
+	int i;
+
+	for (i = 0; src[i]; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+
+	return (dest);
+}
+
+/**
+ * new_dog - a function that creates a new dog
+ *
+ * @name: name of dog
+ * @age: age of dog
+ * @owner: dog owner
+ *
+ * Return: struct pointer dog
+ *         NULL if function fails
+*/
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int i, j;
+	dog_t *dog;
 
-	dog_t *d;
+	/* if name and owner are empty and age is less than zero return null*/
+	if (!name || age < 0 || !owner)
+		return (NULL);
 
-	d = malloc(sizeof(dog_t));
-	for (i = 0; name[i] != '\0'; ++i)
-		;
-	for (j = 0; owner[i] != '\0'; ++j)
-		;
-	if (d == NULL)
+	dog = (dog_t *) malloc(sizeof(dog_t));
+	if (dog == NULL)
+		return (NULL);
+
+	dog->name = malloc(sizeof(char) * (_strlen(name) + 1));
+	if ((*dog).name == NULL)
 	{
-		free(d);
+		free(dog);
 		return (NULL);
 	}
-	d->name = malloc(sizeof(char) * i + 1);
 
-	if (d->name == NULL)
+	dog->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
+	if ((*dog).owner == NULL)
 	{
-		free(d->name);
-		free(d);
+		free(dog->name);
+		free(dog);
 		return (NULL);
 	}
-	d->owner = malloc(sizeof(char) * j + 1);
 
-	if (d->owner == NULL)
-	{
-		free(d->owner);
-		free(d);
-		return (NULL);
-	}
-	for (i = 0; name[i] != '\0'; ++i)
-	{
-		d->name[i] = name[i];
-	}
+	dog->name = _strcopy(dog->name, name);
+	dog->age = age;
+	dog->owner = _strcopy(dog->owner, owner);
 
-	for (j = 0; owner[j] != '\0'; ++j)
-	{
-		d->owner[j] = owner[j];
-	}
-
-	d->age = age;
-	return (d);
+	return (dog);
 }
