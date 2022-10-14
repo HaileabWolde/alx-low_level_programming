@@ -1,33 +1,36 @@
-#include <stdarg.h> /* va_* */
-#include <stdio.h> /* printf */
+#include <stdarg.h>
+#include <stdio.h>
 
 /**
- * print_strings - print varying amount of strings
- * @separator: delimiter
- * @n: amount of arguments in list
- */
+ * print_strings - a function that prints strings, followed by a new line
+ *
+ * @separator: pointer to a constant separator
+ * @n: start of input variables
+ *
+ * Return: nothing
+*/
 
 void print_strings(const char *separator, const unsigned int n, ...)
 {
-	va_list valist;
-	unsigned int i;
-	char *s;
+	va_list ap;
+	unsigned int index;
+	char *str;
 
-	if (n > 0)
+	/* iterate the argument list from the start */
+	va_start(ap, n);
+
+	for (index = 0; index < n; index++)
 	{
-		va_start(valist, n);
-		for (i = 1; i <= n; i++)
-		{
-			s = va_arg(valist, char *);
-			if (s == NULL)
-				printf("(nil)");
-			else
-				printf("%s", s);
+		str = va_arg(ap, char *);
+		if (str)
+			printf("%s", str);
+		else
+			printf("(nil)");
 
-			if (i != n && separator != NULL)
-				printf("%s ", separator);
-		}
-		va_end(valist);
+		if (separator && index != n - 1)
+			printf("%s ", separator);
 	}
+	/*clean up*/
+	va_end(ap);
 	printf("\n");
-}	
+}
