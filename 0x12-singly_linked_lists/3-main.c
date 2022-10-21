@@ -1,71 +1,46 @@
-#include "lists.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
+#include "lists.h"
 
 /**
- * add_node_end - adds a new node at the end
- * @head: pointer to pointer
- * @str: character string
+ * main - check the code
  *
- * Return: pointer
+ * Return: Always 0.
  */
-
-list_t *add_node_end(list_t **head, const char *str)
+int main(void)
 {
-	list_t *newnode;
+    list_t *head;
 
-	list_t *temp;
-
-	newnode = malloc(sizeof(list_t));
-
-	if (head == NULL)
-		return (NULL);
-
-	if (str == NULL)
-		return (NULL);
-
-	if (*head == NULL)
-	{
-		head = newnode;
-		
-		newnode->str = strdup(str);
-
-		newnode->next = NULL;
-
-		newnode->len = strlen(str);
-
-		if (*head == NULL)
-		{
-			return (NULL);
-		}
-
-		return (*head);
-	}
-
-	temp = head;
-
-	while (temp->next != NULL)
-	{	
-		temp = temp->next;
-	}
-
-	temp->next = newnode;
-	
-	newnode->next = NULL;
-
-	newnode->str = strdup(str);
-	
-	newnode->len = strlen(str);
-
-	if (newnode->str == NULL)
-		return (NULL);
-
-	if (*head == NULL)
-	{
-		return (NULL);
-	}
-
-	return (*head);
-
+    head = NULL;
+    add_node_end(&head, "Anne");
+    add_node_end(&head, "Colton");
+    add_node_end(&head, "Corbin");
+    add_node_end(&head, "Daniel");
+    add_node_end(&head, "Danton");
+    add_node_end(&head, "David");
+    add_node_end(&head, "Gary");
+    add_node_end(&head, "Holden");
+    add_node_end(&head, "Ian");
+    add_node_end(&head, "Ian");
+    add_node_end(&head, "Jay");
+    add_node_end(&head, "Jennie");
+    add_node_end(&head, "Jimmy");
+    add_node_end(&head, "Justin");
+    add_node_end(&head, "Kalson");
+    add_node_end(&head, "Kina");
+    add_node_end(&head, "Matthew");
+    add_node_end(&head, "Max");
+    add_node_end(&head, "Michael");
+    add_node_end(&head, "Ntuj");
+    add_node_end(&head, "Philip");
+    add_node_end(&head, "Richard");
+    add_node_end(&head, "Samantha");
+    add_node_end(&head, "Stuart");
+    add_node_end(&head, "Swati");
+    add_node_end(&head, "Timothy");
+    add_node_end(&head, "Victor");
+    add_node_end(&head, "Walton");
+    print_list(head);
+    return (0);
 }
