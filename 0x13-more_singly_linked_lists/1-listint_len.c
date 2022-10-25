@@ -18,15 +18,13 @@ size_t listint_len(const listint_t *h)
 	if (h == NULL)
 		return (0);
 
-	if (h->next == NULL)
-		return (0);
-
 	temp = h;
 
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
-		i += 1;
+		if (temp->n != '\0')
+			i += 1;
 	}
 	return (i);
 }
